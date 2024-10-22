@@ -258,3 +258,25 @@
   width: 24px;
   height: 24px;
 }
+
+.save-message {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.save-message.success {
+  background-color: rgba(0, 255, 0, 0.2);
+  color: #0f5132;
+}
+
+.save-message.error {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: #842029;
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

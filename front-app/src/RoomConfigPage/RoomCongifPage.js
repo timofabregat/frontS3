@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { LayoutDashboard, Search, Settings, LogOut, Save, Users } from "lucide-react";
 import './RoomConfigPage.css';
 
@@ -72,26 +72,28 @@ export default function Component() {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState(null);
+
+  const fetchRooms = useCallback(async () => {
+    try {
+      const response = await fetch('https://aedsh5bqth.execute-api.us-east-2.amazonaws.com/default/front-lamda');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setRooms(data.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching rooms:', error);
+      setError('Failed to fetch rooms. Please try again later.');
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await fetch('https://aedsh5bqth.execute-api.us-east-2.amazonaws.com/default/front-lamda');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setRooms(data.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching rooms:', error);
-        setError('Failed to fetch rooms. Please try again later.');
-        setIsLoading(false);
-      }
-    };
-
     fetchRooms();
-  }, []);
+  }, [fetchRooms]);
 
   useEffect(() => {
     if (selectedRoom) {
@@ -121,10 +123,45 @@ export default function Component() {
     );
   };
 
-  const handleSave = () => {
-    console.log('Saving limits for room', selectedRoom, ':', limits);
-    console.log('Subscribers:', subscribers);
-    // Implement actual save logic here
+  const handleSave = async () => {
+    if (!selectedRoom) {
+      setSaveMessage('Please select a room before saving.');
+      return;
+    }
+
+    setIsSaving(true);
+    setSaveMessage(null);
+
+    try {
+      const response = await fetch('https://82ke0mhqz3.execute-api.us-east-2.amazonaws.com/default/front-lamda-update-room', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: selectedRoom,
+          LimiteTemp: limits.temperature,
+          LimiteHum: limits.humidity,
+          LimiteCO2: limits.co2
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update room limits: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Server response:', data);
+      setSaveMessage('Room limits updated successfully.');
+
+      // Fetch updated room data after successful save
+      await fetchRooms();
+    } catch (error) {
+      console.error('Error updating room limits:', error);
+      setSaveMessage(`Failed to update room limits: ${error.message}`);
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   if (isLoading) {
@@ -218,9 +255,15 @@ export default function Component() {
           )}
 
           {selectedRoom && (
-            <button onClick={handleSave} className="save-button">
-              <Save className="icon" /> Save Settings
+            <button onClick={handleSave} className="save-button" disabled={isSaving}>
+              <Save className="icon" /> {isSaving ? 'Saving...' : 'Save Settings'}
             </button>
+          )}
+
+          {saveMessage && (
+            <div className={`save-message ${saveMessage.includes('successfully') ? 'success' : 'error'}`}>
+              {saveMessage}
+            </div>
           )}
         </div>
       </main>
