@@ -1,0 +1,260 @@
+.room-config-page {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #3b82f6, #8b5cf6);
+  color: white;
+}
+
+.sidebar {
+  width: 256px;
+  background-color: #1e40af;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #bfdbfe;
+}
+
+.sign-out {
+  padding-top: 32px;
+}
+
+.sign-out-button {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.select {
+  width: 100%;
+  background-color: white;
+  color: #2563eb;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.limit-setting {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.slider-container {
+  position: relative;
+  height: 24px;
+}
+
+.slider-track {
+  position: absolute;
+  inset: 0;
+  height: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.slider-fill {
+  position: absolute;
+  inset: 0;
+  height: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border-radius: 9999px;
+}
+
+.slider-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.input-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.input {
+  width: 80px;
+  background-color: white;
+  color: #2563eb;
+  border: none;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 14px;
+}
+
+.subscribers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: white;
+  color: #2563eb;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.save-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.save-button:hover {
+  background-color: #bfdbfe;
+  color: #2563eb;
+}
+
+.sheet {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheet-content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.sheet-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 16px;
+}
+
+.subscribers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subscriber-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.subscriber-item label {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.close-sheet {
+  margin-top: 16px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
