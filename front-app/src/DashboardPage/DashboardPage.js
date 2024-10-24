@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { LayoutDashboard, Search, Settings, LogOut, Thermometer, Droplets, Wind } from "lucide-react";
+import { LayoutDashboard, Search, Settings, LogOut, Thermometer, Droplets, Wind, Link2 } from "lucide-react";
+import { Link } from 'react-router-dom';
 import './DashboardPage.css';
 
 // Expanded test data
@@ -103,11 +104,11 @@ export default function DashboardPage() {
           <NavLink href="" icon={<LayoutDashboard size={24} />}>
             Dashboard
           </NavLink>
-          <NavLink href="../auth/query" icon={<Search size={30} />}>
-            Queries
+          <NavLink icon={<Search size={30} />}>
+            <Link to='/query' className='text-white'>Query</Link>
           </NavLink>
-          <NavLink href="../auth/config" icon={<Settings size={30} />}>
-            Config
+          <NavLink icon={<Settings size={30} />}>
+            <Link to='/config' className='text-white'>Config</Link>
           </NavLink>
         </nav>
         <div className="sign-out">

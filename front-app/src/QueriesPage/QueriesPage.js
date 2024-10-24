@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LayoutDashboard, Search, Settings, LogOut } from "lucide-react";
 import './QueriesPage.css';
+import { Link } from 'react-router-dom';
 
 // Mock data for testing
 const mockResults = [
@@ -34,15 +35,14 @@ export default function QueriesPage() {
       <aside className="sidebar">
         <h1 className="logo">EnviroSense</h1>
         <nav className="nav">
-          <a href="../auth/dash" className="nav-link">
+          <a href="./dashboard" className="nav-link">
             <LayoutDashboard size={24} />
-            <span>Dashboard</span>
           </a>
           <a href="." className="nav-link">
             <Search size={30} />
             <span>Queries</span>
           </a>
-          <a href="../auth/config" className="nav-link">
+          <a href="/config" className="nav-link">
             <Settings size={30} />
             <span>Config</span>
           </a>

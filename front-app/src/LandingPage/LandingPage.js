@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Thermometer, Droplets, Wind } from "lucide-react";
 import './LandingPage.css';
+import { Link } from 'react-router-dom';
 
 export default function LandingPage() {
   const [isHovered, setIsHovered] = useState(false);
@@ -34,7 +35,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <a href="/auth/dash">
+        <Link to="/dashboard">
           <button
             className={`login-button ${isHovered ? 'hovered' : ''}`}
             onMouseEnter={() => setIsHovered(true)}
@@ -43,7 +44,7 @@ export default function LandingPage() {
             <span>Inicia sesión para comenzar</span>
             <ArrowRight className={`arrow ${isHovered ? 'translate' : ''}`} />
           </button>
-        </a>
+        </Link>
       </main>
 
       <footer>

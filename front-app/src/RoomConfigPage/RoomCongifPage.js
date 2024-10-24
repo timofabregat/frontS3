@@ -177,11 +177,11 @@ export default function Component() {
       <aside className="sidebar">
         <h1 className="logo">EnviroSense</h1>
         <nav className="nav">
-          <a href="../auth/dash" className="nav-link">
+          <a href="/dashboard" className="nav-link">
             <LayoutDashboard size={24} />
             <span>Dashboard</span>
           </a>
-          <a href="../auth/query" className="nav-link">
+          <a href="/query" className="nav-link">
             <Search size={30} />
             <span>Queries</span>
           </a>
